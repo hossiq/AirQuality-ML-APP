@@ -20,4 +20,6 @@ The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summ
 <img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Pulaski.png?raw=true" width="500" alt="Pulaski_Seasonality">
 <img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Crittenden.png?raw=true" width="500" alt="Crittenden_seasnality">
 
+<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" width="48%" alt="Image Description 1" /> <img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" width="48%" alt="Image Description 2" />
+
 
