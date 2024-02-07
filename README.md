@@ -12,7 +12,9 @@ AQI and meteorogical datadata is collected from three different Counties in Arka
 **Data Analysis**
 I used python coding to analyze various aspects of the data. For instance, only 0.43% of data has AQI>100, whereas 92.22% data is in 0-50 class. Correlation heatmap shows correlation co-efficient between variables,and we can see Max Temperature (positively)  and  Precipitation (negatively) are strognly correlated to AQI. 
 
-<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" height="48%" alt="AQI_Data_Count_Not_Working" /><img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" height="48%" alt="Coorelation_Plot"/>
+<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" width="48%" alt="AQI_Data_Count_Not_Working" /><img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" width="48%" alt="Coorelation_Plot"/>
+
+<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 1" style="width: 200px; height: 200px; object-fit: cover;" /> <img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 2" style="width: 200px; height: 200px; object-fit: cover;" />
 
 The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summer season shows highest AQI variability!
 
