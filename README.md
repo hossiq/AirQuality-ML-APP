@@ -14,7 +14,7 @@ I used python coding to analyze various aspects of the data. For instance, only 
 
 <img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" width="48%" alt="AQI_Data_Count_Not_Working" /><img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" width="48%" alt="Coorelation_Plot"/>
 
-<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 1" style="width: 400px; height: 300px; object-fit: cover;" /> <img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 2" style="width: 400px; height: 300px; object-fit: cover;" />
+<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 1" style="width: 400px; height: 300px; object-fit: cover;" /> <img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" alt="Image 2" style="width: 400px; height: 300px; object-fit: cover;" />
 
 The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summer season shows highest AQI variability!
 
