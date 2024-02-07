@@ -12,7 +12,7 @@ AQI and meteorogical datadata is collected from three different Counties in Arka
 **Data Analysis**
 I used python coding to analyze various aspects of the data. For instance, only 0.43% of data has AQI>100, whereas 92.22% data is in 0-50 class.
 https://github.com/iqbal-T19/image/commit/c9e62bba42bcb6e5c8637e208fa17971b08cff34
-![Alt text](https://github.com/iqbal-T19/image/blob/image/AQI counts_Overall.png?raw=true)
+![Alt text](https://github.com/iqbal-T19/image/blob/image/AQI_Counts_Pulaski.png?raw=true)
 
 ![Alt text](https://github.com/your_username/your_repository/blob/image/path/to/your/image.png?raw=true)
 
