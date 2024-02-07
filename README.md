@@ -10,8 +10,7 @@ Polluted Air is responsible for various health issues such as increases the risk
 AQI and meteorogical datadata is collected from three different Counties in Arkansas,USA for 2018-2022 from NOAA(National Oceanic and Atmospheric Administration) and EPA(Environmental Protection Agency). Daily Max AQI data is considered for counties with multiple AQI monitors, and weather data is taken from nearest met station of the specific AQI monitor. There are a number of variables, but for this project Wind Speed(AWND), Precipitation(PRCP), SNOW, Temperature Max (TMAX) and Min(TMIN) data is considered. The basic data quality check is performed and missing values are processed by interpolation using python.
 
 **Data Analysis**
-I used python coding to analyze various aspects of the data. For instance, only 0.43% of data has AQI>100, whereas 92.22% data is in 0-50 class.
-![AQI_Data_Count_Not_Working](https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true)
+I used python coding to analyze various aspects of the data. For instance, only 0.43% of data has AQI>100, whereas 92.22% data is in 0-50 class. <img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" width="500" alt="AQI_Data_Count_Not_Working">
+Correlation heatmap shows correlation co-efficient between variables,and we can see Max Temperature (positively)  and  Precipitation (negatively) are strognly correlated to AQI.  <img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" width="500" alt="Coorelation_Plot">
 
-<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" width="500" alt="AQI_Data_Count_Not_Working">
 
