@@ -16,3 +16,5 @@ https://github.com/iqbal-T19/image/commit/c9e62bba42bcb6e5c8637e208fa17971b08cff
 
 [AQI counts_Overall.png](https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true)
 
+![Alternative text](https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true)
+
