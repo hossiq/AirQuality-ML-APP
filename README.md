@@ -23,7 +23,7 @@ The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summ
 This project evaluated feature importance of the variables to select features that are most important to use in the model. Since, This is a classification problem, feature importance is evaluated utilizing RandomForestClassifier, CART (DecisionTreeClassifier), and XGBoost models.
 
 <pre>
-```python
+```
 df = pd.read_csv('Combined_Final.csv')
 # Creating AQI classes 
 bins = [-1, 50, 100, float('inf')]  # The bins for the classes
@@ -53,7 +53,7 @@ importances_xgb_percentage = 100 * (importances_xgb / importances_xgb.sum())
 ```
 </pre>
 
-<img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.png?raw=true" alt="TimeSeries_Plot" style="width: 400px; height: 300px; object-fit: cover;" /><img 
+<img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.png?raw=true" alt="TimeSeries_Plot" style="height: 300px; object-fit: cover;" />
 
 
 
