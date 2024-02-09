@@ -20,7 +20,7 @@ The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summ
 <img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Crittenden.png?raw=true" alt="Crittenden_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Washington.png?raw=true"  alt="Washington_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/>
 
 **Feature Importance**
-This project evaluated feature importance of the variables to select features that are most important to use in the model. Since, This is a classification problem, feature importance is evaluated utilizing RandomForestClassifier, CART (DecisionTreeClassifier), and XGBoost models.
+This project evaluated feature importance of the variables to select features that are most important to use in the model. Since, This is a classification problem, feature importance is evaluated utilizing RandomForestClassifier, and CART (DecisionTreeClassifier) models.
 
 <pre>
 ```
@@ -40,21 +40,20 @@ rfc.fit(X_train, y_train)
 # Using CART model
 cart = DecisionTreeClassifier(random_state=42)
 cart.fit(X_train, y_train)
-# Using XGBOOST model
-xgb_model = xgb.XGBClassifier(use_label_encoder=False, eval_metric='mlogloss', random_state=42)
-xgb_model.fit(X_train, y_train)
+
 # Getting feature importances
 importances_rfc = rfc.feature_importances_
 importances_cart = cart.feature_importances_
-importances_xgb = xgb_model.feature_importances_
 importances_rfc_percentage = 100 * (importances_rfc / importances_rfc.sum())
 importances_cart_percentage = 100 * (importances_cart / importances_cart.sum())
-importances_xgb_percentage = 100 * (importances_xgb / importances_xgb.sum())
 ```
 </pre>
 
 <img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.PNG?raw=true" alt="Feature Importance Plot" />
-          https://github.com/iqbal-T19/image/blob/main/Feature_Importance.PNG?raw=true
+ The output shows SNOW can be removed from the modeling as it doesn't have any importance for AQI prediction.
+
+ **Model Development**
+   
 
 
 
