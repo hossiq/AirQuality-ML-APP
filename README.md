@@ -53,7 +53,7 @@ importances_xgb_percentage = 100 * (importances_xgb / importances_xgb.sum())
 ```
 </pre>
 
-<img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.png?raw=true" alt="TimeSeries_Plot" style="height: 300px; object-fit: cover;" />
+<img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.png?raw=true" alt="Feature Importance Plot" />
 
 
 
