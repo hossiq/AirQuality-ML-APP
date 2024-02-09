@@ -49,10 +49,13 @@ importances_cart_percentage = 100 * (importances_cart / importances_cart.sum())
 ```
 </pre>
 
-<img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.PNG?raw=true" alt="Feature Importance Plot" />
+<p align="center">
+  <img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.PNG?raw=true" alt="Feature Importance Plot" />
+</p>
+
  The output shows SNOW can be removed from the modeling as it doesn't have any importance for AQI prediction.
 
- **Model Development**
+**Model Development**
    
 
 
