@@ -90,7 +90,7 @@ Then, to check for overfitting a decision tree depths up to 20 is considered and
 The plot shows as the depth increases, the model perform better on the test set due to its improved ability to generalize. However, beyond a certain depth (after about depth=3), the test accuracy starts to plateau and then decreases, indicating that the model is starting to overfit the training data and is losing its generalization capability on unseen data.
 To address the overfitting issue, a new model is applied.
 
-      **Random Forest Model**
+> **Random Forest (RF) model**
 
 
 
