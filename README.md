@@ -84,7 +84,7 @@ The model output has accuracy of ~ 87%, but it couldn't predict for AQI > 100 cl
 Then, to check for overfitting a decision tree depths up to 20 is considered and the results shown in the following plot
 
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/CART_Overfitting.PNG?raw=true" alt="Plot" width="600"/>
+  <img src="https://github.com/iqbal-T19/image/blob/main/CART_Overfitting.PNG?raw=true" alt="Plot" width="450"/>
 </p>
 The plot shows as the depth increases, the model perform better on the test set due to its improved ability to generalize. However, beyond a certain depth (after about depth=3), the test accuracy starts to plateau and then decreases, indicating that the model is starting to overfit the training data and is losing its generalization capability on unseen data.
 
