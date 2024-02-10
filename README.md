@@ -57,9 +57,10 @@ importances_cart_percentage = 100 * (importances_cart / importances_cart.sum())
 The output shows SNOW can be removed from the modeling as it doesn't have any importance for AQI prediction.
 
 
+
 **Model Development**
 
-  ** CART (Classification and Regression Trees)** 
+     ** CART (Classification and Regression Trees)** 
   
 This study utilized CART model for the initial trial because its ability to handle non-linear relationships and various types of variables without stringent data prerequisites. For this model,test size kept at 30%. And 'stratify=y' option used in the train_test_split because of imbalanced datasets which ensure that the train and test sets are representative of the entire dataset.
   <pre>
@@ -90,7 +91,7 @@ Then, to check for overfitting a decision tree depths up to 20 is considered and
 The plot shows as the depth increases, the model perform better on the test set due to its improved ability to generalize. However, beyond a certain depth (after about depth=3), the test accuracy starts to plateau and then decreases, indicating that the model is starting to overfit the training data and is losing its generalization capability on unseen data.
 To address the overfitting issue, a new model is applied.
 
-**Random Forest Model**
+      **Random Forest Model**
 
 
 
