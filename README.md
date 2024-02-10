@@ -10,6 +10,7 @@ Polluted Air is responsible for various health issues such as increases the risk
 AQI and meteorogical datadata is collected from three different Counties in Arkansas,USA for 2018-2022 from NOAA(National Oceanic and Atmospheric Administration) and EPA(Environmental Protection Agency). Daily Max AQI data is considered for counties with multiple AQI monitors, and weather data is taken from nearest met station of the specific AQI monitor. There are a number of variables, but for this project Wind Speed(AWND), Precipitation(PRCP), SNOW, Temperature Max (TMAX) and Min(TMIN) data is considered. The basic data quality check is performed and missing values are processed by interpolation using python.
 
 **Data Analysis**
+
 I used python coding to analyze various aspects of the data. For instance, only 0.43% of data has AQI>100, whereas 92.22% data is in 0-50 class. Correlation heatmap shows correlation co-efficient between variables,and we can see Max Temperature (positively)  and  Precipitation (negatively) are strognly correlated to AQI. 
 
 <img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 1" style="width: 400px; height: 300px; object-fit: cover;" /> <img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" alt="Image 2" style="width: 400px; height: 300px; object-fit: cover;" />
@@ -20,6 +21,7 @@ The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summ
 <img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Crittenden.png?raw=true" alt="Crittenden_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Washington.png?raw=true"  alt="Washington_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/>
 
 **Feature Importance**
+
 This project evaluated feature importance of the variables to select features that are most important to use in the model. Since, This is a classification problem, feature importance is evaluated utilizing RandomForestClassifier, and CART (DecisionTreeClassifier) models.
 
 <pre>
@@ -52,11 +54,27 @@ importances_cart_percentage = 100 * (importances_cart / importances_cart.sum())
 <p align="center">
   <img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.PNG?raw=true" alt="Feature Importance Plot" />
 </p>
+The output shows SNOW can be removed from the modeling as it doesn't have any importance for AQI prediction.
 
- The output shows SNOW can be removed from the modeling as it doesn't have any importance for AQI prediction.
 
 **Model Development**
-   
+
+    ** CART (Classification and Regression Trees):** This study utilized CART model for the initial trial because its ability to handle non-linear relationships and various types of variables without stringent data prerequisites. For this model,test size kept at 30%.
+    ```
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+# Initialize the Decision Tree Classifier
+cart_model = DecisionTreeClassifier(random_state=42)
+# Train the model
+cart_model.fit(X_train, y_train)
+# Predict on the test set
+cart_pred = cart_model.predict(X_test) ```
+
+The model output has accuracy of ~ 87%, but it couldn't predict for AQI > 100 class(minority class).
+</pre>
+<p align="center">
+  <img src="https://github.com/iqbal-T19/image/blob/main/CART_out.PNG?raw=true" alt="Feature Importance Plot" />
+</p>
 
 
 
