@@ -59,8 +59,10 @@ The output shows SNOW can be removed from the modeling as it doesn't have any im
 
 **Model Development**
 
-    ** CART (Classification and Regression Trees):** This study utilized CART model for the initial trial because its ability to handle non-linear relationships and various types of variables without stringent data prerequisites. For this model,test size kept at 30%.
-    ```
+    ** CART (Classification and Regression Trees):** 
+This study utilized CART model for the initial trial because its ability to handle non-linear relationships and various types of variables without stringent data prerequisites. For this model,test size kept at 30%.
+  <pre>
+```
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
 # Initialize the Decision Tree Classifier
@@ -68,7 +70,10 @@ cart_model = DecisionTreeClassifier(random_state=42)
 # Train the model
 cart_model.fit(X_train, y_train)
 # Predict on the test set
-cart_pred = cart_model.predict(X_test) ```
+cart_pred = cart_model.predict(X_test) 
+    ```
+</pre>
+
 
 The model output has accuracy of ~ 87%, but it couldn't predict for AQI > 100 class(minority class).
 </pre>
