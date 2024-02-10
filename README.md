@@ -60,7 +60,7 @@ The output shows SNOW can be removed from the modeling as it doesn't have any im
 **Model Development**
 
     ** CART (Classification and Regression Trees):** 
-This study utilized CART model for the initial trial because its ability to handle non-linear relationships and various types of variables without stringent data prerequisites. For this model,test size kept at 30%.
+This study utilized CART model for the initial trial because its ability to handle non-linear relationships and various types of variables without stringent data prerequisites. For this model,test size kept at 30%. And 'stratify=y' option used in the train_test_split because of imbalanced datasets which ensure that the train and test sets are representative of the entire dataset.
   <pre>
 ```
 # Split the data into training and testing sets
