@@ -152,10 +152,19 @@ y_pred = model.predict(X_test)
 
 <img src="https://github.com/iqbal-T19/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 300px; object-fit: cover;"/>
 
-As none of these methods are best way to capture minority class in test dataset, this study considered 'season' as an independent feature (for demonstration purpose) and re-run the models for each of the sampling scenarios. ADASYN method provides better result.
+As none of these methods are best way to capture minority class in test dataset, this study considered 'season' as an independent feature (for demonstration purpose) and re-run the models for each of the sampling scenarios. ADASYN method with class_weight provides better result.
 
  <pre>
 ```
+
+# Function to categorize AQI_O3
+def categorize_aqi(aqi):
+    if aqi <= 50:
+        return '0-50'
+    elif 51 <= aqi <= 100:
+        return '51-100'
+    else:
+        return '>100'
 # Function to determine the season based on the month
 def get_season(month):
     if month in [3, 4, 5]:
@@ -175,15 +184,37 @@ data['Month'] = data['Date'].dt.month
 # Create the 'Season' column and drop unnecessary columns
 data['Season'] = data['Month'].apply(get_season)
 data.drop(['Date', 'Month', 'SNOW', 'COUNTY'], axis=1, inplace=True)
-# Apply one-hot encoding to 'Season' to get categorical data to numerically coded.
+# Apply one-hot encoding to 'Season'
 data = pd.get_dummies(data, columns=['Season'])
 # Convert AQI_O3 to categories
 data['AQI_O3'] = data['AQI_O3'].apply(categorize_aqi)
+# Separate features and target variable
+X = data.drop('AQI_O3', axis=1)
+y = data['AQI_O3']
+
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+# Standardize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+
+# Apply ADASYN for oversampling the minority class
+adasyn = ADASYN(random_state=42)
+X_train_adasyn, y_train_adasyn = adasyn.fit_resample(X_train, y_train)
+# Compute class weights for cost-sensitive learning
+class_weights = compute_class_weight('balanced', classes=np.unique(y_train_adasyn), y=y_train_adasyn)
+class_weights_dict = dict(zip(np.unique(y_train_adasyn), class_weights))
+
+# Initialize and train the Random Forest Classifier with class weights
+model = RandomForestClassifier(n_estimators=100, random_state=42, class_weight=class_weights_dict)
+model.fit(X_train_adasyn, y_train_adasyn)
   ```
 </pre>
 
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN_Season.PNG?raw=true" alt="Plot" width="450"/>
+  <img src="https://github.com/iqbal-T19/image/blob/main/Random Forest Classification with ADASYN and class_weight.PNG?raw=true" alt="Plot" width="450"/>
 </p>
 
-The F1-score is 0.93, indicating a strong balance between precision and recall, suggesting great model performance for 0-50 class while F1-score is 0.27 and 0.09 indicates poor performance for 51-100 and >100 classes, respectivly.
+The F1-score is 0.93 which indicating a strong balance between precision and recall for 0-50 class while F1-score is 0.27 and 0.18 indicates poor performance for 51-100 and >100 classes, respectivly.
+
