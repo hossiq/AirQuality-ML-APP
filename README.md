@@ -218,3 +218,225 @@ model.fit(X_train_adasyn, y_train_adasyn)
 
 The F1-score is 0.93 which indicating a strong balance between precision and recall for 0-50 class while F1-score is 0.27 and 0.18 indicates poor performance for 51-100 and >100 classes, respectivly.
 
+
+**Model Deployment/APP Development**
+
+> **Pickle for Model**
+      Pickle is a Python module used to convert Python objects into a byte stream known as pickling which is used to save the trained model to a file. This process is called the model serialization.
+
+ <pre>
+```
+import pickle
+#save model 
+with open('model.pkl', 'wb') as file:
+    pickle.dump(model, file)
+  ```
+</pre>
+
+>**Building a Web Application with Flask**
+
+  Python Flask is used to create a web application that serves as an interface to the machine learning model.
+  
+ <pre>
+```
+from flask import Flask, render_template, request
+import pickle
+import numpy as np
+
+# Initialize the Flask application
+app = Flask(__name__)
+
+# Load the pre-trained model
+with open('model.pkl', 'rb') as file:
+    model = pickle.load(file)
+
+# Function to one-hot encode the season input
+def encode_season(season):
+    return [1 if season == s else 0 for s in ['Spring', 'Summer', 'Fall', 'Winter']]
+
+# Route for handling the landing page logic
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    prediction = None
+    color = 'black'  # Default text color
+
+    if request.method == 'POST':
+        # Get input values
+        input_values = request.form.to_dict()
+
+        # Handle season encoding
+        season = input_values.pop('season')
+        season_encoded = encode_season(season)
+
+        # Convert other inputs to float and combine with season encoding
+        input_values = [float(value) for value in input_values.values()]
+        input_values = season_encoded + input_values
+        input_values = np.array(input_values).reshape(1, -1)
+
+        # Make prediction
+        prediction = model.predict(input_values)[0]
+
+        # Color coding based on AQI_O3 category
+        if prediction == '0-50':
+            color = 'green'
+        elif prediction == '51-100':
+            color = 'yellow'
+        else:  # prediction == '>100'
+            color = 'red'
+
+    return render_template('index.html', prediction=prediction, color=color)
+
+# Run the app
+if __name__ == '__main__':
+    app.run(debug=True)
+ ```
+</pre>
+
+>**HTML Front-end**
+
+ The front-end of web application is developed using HTML and CSS that provides a user interface for inputting data into the model and displaying the output.
+
+ <pre>
+```
+    #html and css script
+   
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Predict AQI_O3</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 48%;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50; /* Green color */
+        }
+        .date {
+            text-align: center;
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #555;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px; /* Added for spacing */
+        }
+        input[type="submit"] {
+            background-color: #4CAF50; /* Green color */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .prediction {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Air Quality Prediction App</h1>
+    <p id="currentDate" class="date"></p>
+    <div class="container">
+        <form method="POST">
+            <h2>Enter Input Values</h2>
+            <!-- First row of input fields -->
+            <div class="row">
+                <div class="input-group">
+                    <label for="AWND">Average Wind Speed (m/s):</label>
+                    <input type="number" name="AWND" placeholder="AWND">
+                </div>
+                <div class="input-group">
+                    <label for="PRCP">Precipitation (mm):</label>
+                    <input type="number" name="PRCP" placeholder="PRCP">
+                </div>
+            </div>
+
+            <!-- Second row of input fields -->
+            <div class="row">
+                <div class="input-group">
+                    <label for="TMAX">Max Temperature (°F):</label>
+                    <input type="number" name="TMAX" placeholder="TMAX">
+                </div>
+                <div class="input-group">
+                    <label for="TMIN">Min Temperature (°F):</label>
+                    <input type="number" name="TMIN" placeholder="TMIN">
+                </div>
+            </div>
+
+            <!-- Third row for season dropdown -->
+            <div class="row">
+                <div class="input-group">
+                    <label for="season">Season:</label>
+                    <select name="season">
+                        <option value="Spring">Spring</option>
+                        <option value="Summer">Summer</option>
+                        <option value="Fall">Fall</option>
+                        <option value="Winter">Winter</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Predict button -->
+            <div class="center">
+                <input type="submit" value="Press to Predict AQI">
+            </div>
+
+            <!-- Display prediction -->
+            {% if prediction is not none %}
+                <div class="prediction" style="color: {{ color }};">Prediction: {{ prediction }}</div>
+            {% endif %}
+        </form>
+    </div>
+
+    <script>
+        // JavaScript to display the current date
+        document.getElementById("currentDate").innerHTML = "Today's Date: " + new Date().toLocaleDateString();
+    </script>
+</body>
+</html>
+ ```
+</pre>
+
