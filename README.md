@@ -92,6 +92,26 @@ To address the overfitting issue, a new model is applied.
 
 > **Random Forest (RF) model**
 
+RF is an ensemble learning method (combine numerous classifiers to enhance a model's performance) that fits a number of decision tree classifiers on various sub-samples of the dataset and uses majority voting for classification tasks to improve predictive accuracy and control over-fitting. In this method,  'class_weight' parameter is assigend as 'balanced' to ensure that the model pays more attention to the minority class.
+  <pre>
+```
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+# Standardize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+# Compute class weights
+class_weights = compute_class_weight('balanced', classes=np.unique(y_train), y=y_train)
+class_weights_dict = dict(zip(np.unique(y_train), class_weights))
+# Initialize and train the Random Forest Classifier with class weights
+model = RandomForestClassifier(n_estimators=100, random_state=42, class_weight=class_weights_dict)
+model.fit(X_train, y_train)
+   ```
+</pre>
+
+Using the above RF method with 'class_weight' setup, the model 
+
 
 
 
