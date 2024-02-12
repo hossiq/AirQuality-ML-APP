@@ -222,7 +222,7 @@ The F1-score is 0.93 which indicating a strong balance between precision and rec
 **Model Deployment/APP Development**
 
 
-> **Pickle for Model**
+>**Pickle for Model**
 
 
       Pickle is a Python module used to convert Python objects into a byte stream known as pickling which is used to save the trained model to a file. This process is called the model serialization.
