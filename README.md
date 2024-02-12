@@ -221,7 +221,10 @@ The F1-score is 0.93 which indicating a strong balance between precision and rec
 
 **Model Deployment/APP Development**
 
+
 > **Pickle for Model**
+
+
       Pickle is a Python module used to convert Python objects into a byte stream known as pickling which is used to save the trained model to a file. This process is called the model serialization.
 
  <pre>
@@ -233,7 +236,10 @@ with open('model.pkl', 'wb') as file:
   ```
 </pre>
 
+
 >**Building a Web Application with Flask**
+
+
 
   Python Flask is used to create a web application that serves as an interface to the machine learning model.
   
@@ -296,8 +302,8 @@ if __name__ == '__main__':
 
  The front-end of web application is developed using HTML and CSS that provides a user interface for inputting data into the model and displaying the output.
 
- <pre>
-```
+
+```html
     #html and css script
    
 <!DOCTYPE html>
@@ -437,6 +443,5 @@ if __name__ == '__main__':
     </script>
 </body>
 </html>
- ```
-</pre>
+```
 
