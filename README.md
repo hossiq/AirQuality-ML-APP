@@ -76,7 +76,8 @@ cart_pred = cart_model.predict(X_test)
 </pre>
 
 
-The model output has accuracy of ~ 87%, but it couldn't predict for AQI > 100 class(minority class).
+The model output has accuracy of ~ 87%, but it couldn't predict for AQI > 100 class(minority class).Precision indicates how many were actually positive out of all the instances the model predicted as positive. Recall indicates how many did the model correctly identify out of all the actual positive instances, and F1-score indicates a balance between precision and recall
+
 </pre>
 <p align="center">
   <img src="https://github.com/iqbal-T19/image/blob/main/CART_out.PNG?raw=true" alt=" Plot" />
@@ -151,8 +152,38 @@ y_pred = model.predict(X_test)
 
 <img src="https://github.com/iqbal-T19/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 300px; object-fit: cover;"/>
 
+As none of these methods are best way to capture minority class in test dataset, this study considered 'season' as an independent feature (for demonstration purpose) and re-run the models for each of the sampling scenarios. ADASYN method provides better result.
 
+ <pre>
+```
+# Function to determine the season based on the month
+def get_season(month):
+    if month in [3, 4, 5]:
+        return 'Spring'
+    elif month in [6, 7, 8]:
+        return 'Summer'
+    elif month in [9, 10, 11]:
+        return 'Fall'
+    else:
+        return 'Winter'  # Assuming months 12, 1, 2 are Winter
+# Load the dataset
+file_path = 'Combined_Final.csv'  
+data = pd.read_csv(file_path)
+# Convert 'Date' to datetime to extract the month
+data['Date'] = pd.to_datetime(data['Date'])
+data['Month'] = data['Date'].dt.month
+# Create the 'Season' column and drop unnecessary columns
+data['Season'] = data['Month'].apply(get_season)
+data.drop(['Date', 'Month', 'SNOW', 'COUNTY'], axis=1, inplace=True)
+# Apply one-hot encoding to 'Season' to get categorical data to numerically coded.
+data = pd.get_dummies(data, columns=['Season'])
+# Convert AQI_O3 to categories
+data['AQI_O3'] = data['AQI_O3'].apply(categorize_aqi)
+  ```
+</pre>
 
-
+<p align="center">
+  <img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN_Season.PNG?raw=true" alt="Plot" width="450"/>
+</p>
 
 
