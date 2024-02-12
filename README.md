@@ -186,4 +186,4 @@ data['AQI_O3'] = data['AQI_O3'].apply(categorize_aqi)
   <img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN_Season.PNG?raw=true" alt="Plot" width="450"/>
 </p>
 
-
+The F1-score is 0.93, indicating a strong balance between precision and recall, suggesting great model performance for 0-50 class while F1-score is 0.27 and 0.09 indicates poor performance for 51-100 and >100 classes, respectivly.
