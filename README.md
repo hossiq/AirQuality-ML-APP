@@ -13,12 +13,12 @@ AQI and meteorogical datadata is collected from three different Counties in Arka
 
 I used python coding to analyze various aspects of the data. For instance, only 0.43% of data has AQI>100, whereas 92.22% data is in 0-50 class. Correlation heatmap shows correlation co-efficient between variables,and we can see Max Temperature (positively)  and  Precipitation (negatively) are strognly correlated to AQI. 
 
-<img src="https://github.com/iqbal-T19/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 1" style="width: 400px; height: 300px; object-fit: cover;" /> <img src="https://github.com/iqbal-T19/image/blob/main/Corr%20plot.png?raw=true" alt="Image 2" style="width: 400px; height: 300px; object-fit: cover;" />
+<img src="https://github.com/hossiq/image/blob/main/AQI%20counts_Overall.png?raw=true" alt="Image 1" style="width: 400px; height: 300px; object-fit: cover;" /> <img src="https://github.com/hossiq/image/blob/main/Corr%20plot.png?raw=true" alt="Image 2" style="width: 400px; height: 300px; object-fit: cover;" />
 
 The seasonality plot and timeseries plot shows, AQI has seasonal effect and Summer season shows highest AQI variability!
 
-<img src="https://github.com/iqbal-T19/image/blob/main/TimeSeries_Plot.png?raw=true" alt="TimeSeries_Plot" style="width: 400px; height: 300px; object-fit: cover;" /><img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Pulaski.png?raw=true" alt="Pulaski_Seasonality" style="width: 400px; height: 300px; object-fit: cover;" />
-<img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Crittenden.png?raw=true" alt="Crittenden_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/Seasonality_Washington.png?raw=true"  alt="Washington_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/>
+<img src="https://github.com/hossiq/image/blob/main/TimeSeries_Plot.png?raw=true" alt="TimeSeries_Plot" style="width: 400px; height: 300px; object-fit: cover;" /><img src="https://github.com/hossiq/image/blob/main/Seasonality_Pulaski.png?raw=true" alt="Pulaski_Seasonality" style="width: 400px; height: 300px; object-fit: cover;" />
+<img src="https://github.com/hossiq/image/blob/main/Seasonality_Crittenden.png?raw=true" alt="Crittenden_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/hossiq/image/blob/main/Seasonality_Washington.png?raw=true"  alt="Washington_seasnality" style="width: 400px; height: 300px; object-fit: cover;"/>
 
 **Feature Importance**
 
@@ -52,7 +52,7 @@ importances_cart_percentage = 100 * (importances_cart / importances_cart.sum())
 </pre>
 
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/Feature_Importance.PNG?raw=true" alt="Feature Importance Plot" />
+  <img src="https://github.com/hossiq/image/blob/main/Feature_Importance.PNG?raw=true" alt="Feature Importance Plot" />
 </p>
 The output shows SNOW can be removed from the modeling as it doesn't have any importance for AQI prediction.
 
@@ -80,13 +80,13 @@ The model output has accuracy of ~ 87%, but it couldn't predict for AQI > 100 cl
 
 </pre>
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/CART_out.PNG?raw=true" alt=" Plot" />
+  <img src="https://github.com/hossiq/image/blob/main/CART_out.PNG?raw=true" alt=" Plot" />
 </p>
 
 Then, to check for overfitting a decision tree depths up to 20 is considered and the results shown in the following plot
 
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/CART_Overfitting.PNG?raw=true" alt="Plot" width="450"/>
+  <img src="https://github.com/hossiq/image/blob/main/CART_Overfitting.PNG?raw=true" alt="Plot" width="450"/>
 </p>
 The plot shows as the depth increases, the model perform better on the test set due to its improved ability to generalize. However, beyond a certain depth (after about depth=3), the test accuracy starts to plateau and then decreases, indicating that the model is starting to overfit the training data and is losing its generalization capability on unseen data.
 To address the overfitting issue, a new model is applied.
@@ -150,7 +150,7 @@ y_pred = model.predict(X_test)
    ```
 </pre>
 
-<img src="https://github.com/iqbal-T19/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 280px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 280px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 280px; object-fit: cover;"/>
+<img src="https://github.com/hossiq/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 280px; object-fit: cover;"/><img src="https://github.com/hossiq/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 280px; object-fit: cover;"/><img src="https://github.com/hossiq/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 280px; object-fit: cover;"/>
 
 As none of these methods are best way to capture minority class in test dataset, this study considered 'season' as an independent feature (for demonstration purpose) and re-run the models for each of the sampling scenarios. ADASYN method with class_weight provides better result.
 
@@ -213,7 +213,7 @@ model.fit(X_train_adasyn, y_train_adasyn)
 </pre>
 
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/Random Forest Classification with ADASYN and class_weight.PNG?raw=true" alt="Plot" width="450"/>
+  <img src="https://github.com/hossiq/image/blob/main/Random Forest Classification with ADASYN and class_weight.PNG?raw=true" alt="Plot" width="450"/>
 </p>
 
 The F1-score is 0.93 which indicating a strong balance between precision and recall for 0-50 class while F1-score is 0.27 and 0.18 indicates poor performance for 51-100 and >100 classes, respectivly.
@@ -446,7 +446,7 @@ if __name__ == '__main__':
 ```
 
 <p align="center">
-  <img src="https://github.com/iqbal-T19/image/blob/main/AirQualityAPP.PNG?raw=true" alt="App"/>
+  <img src="https://github.com/hossiq/image/blob/main/AirQualityAPP.PNG?raw=true" alt="App"/>
 </p>
 
 **Future Work**
