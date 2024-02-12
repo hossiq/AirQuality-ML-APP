@@ -149,7 +149,7 @@ y_pred = model.predict(X_test)
    ```
 </pre>
 
-<img src="https://github.com/iqbal-T19/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 400px; height: 300px; object-fit: cover;"/>
+<img src="https://github.com/iqbal-T19/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 300px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 300px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 300px; height: 300px; object-fit: cover;"/>
 
 
 
