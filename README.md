@@ -448,3 +448,10 @@ if __name__ == '__main__':
 <p align="center">
   <img src="https://github.com/iqbal-T19/image/blob/main/AirQualityAPP.PNG?raw=true" alt="App"/>
 </p>
+
+**Future Work**
+
+This study demonstrated step by step process of building an APP to predict air quality. The above results show the model result is not predicting minority classes well. This limitation underscores the need for a more robust dataset and a diversified set of predictive features. For further study, considering more data (10-15 years) to get better sample of minority class and more independent variables which are related to air quality such as humidity, cloud cover, etc. may improve the model.
+
+
+
