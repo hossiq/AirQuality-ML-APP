@@ -142,7 +142,7 @@ X_test = scaler.transform(X_test)
 # Apply ADASYN for oversampling the minority class
 adasyn = ADASYN(random_state=42)
 X_train_adasyn, y_train_adasyn = adasyn.fit_resample(X_train, y_train)
-# Initialize and train the Random Forest Classifier with class weights
+# Initialize and train the Random Forest Classifier 
 model = RandomForestClassifier(n_estimators=100, random_state=42)
 model.fit(X_train_adasyn, y_train_adasyn)
 # Predict on test set
