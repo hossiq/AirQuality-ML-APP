@@ -110,7 +110,48 @@ model.fit(X_train, y_train)
    ```
 </pre>
 
-Using the above RF method with 'class_weight' setup, the model 
+Using the above RF method with 'class_weight' setup, the model still couldn't predict >100 class. Also, recall and precision is value is low for 51-100 class. Then, SMOTE(Synthetic Minority Over-sampling Technique) and ADASYN(Adaptive Synthetic Sampling) sampling technique is applied to deal with class inbalance issue to get better f1-score for minority classes. SMOTE generate synthetic samples by finding  k nearest neighbors (in the minority class) and synthetic instances are created by choosing one of these neighbors at random and then drawing a line in the feature space between the sample and its neighbor, and synthetic samples are generated along this line. ADASYN method also creates synthetic samples, but it calculates the density distribution of the minority class instances and generates more synthetic data for those instances that are surrounded by neighbors from the majority class. Meaning it focuses on the regions where the classifier has more difficulty to recognize minority class.  
+  <pre>
+```
+               #SMOTE Technique   
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+# Standardize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+# Apply SMOTE for oversampling the minority class
+smote = SMOTE(random_state=42)
+X_train_smote, y_train_smote = smote.fit_resample(X_train, y_train)
+# Initialize and train the Random Forest Classifier
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train_smote, y_train_smote)
+   ```
+</pre>
+
+ <pre>
+```
+               #ADASYN Technique   
+# Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42, stratify=y)
+# Standardize the features
+scaler = StandardScaler()
+X_train = scaler.fit_transform(X_train)
+X_test = scaler.transform(X_test)
+# Apply ADASYN for oversampling the minority class
+adasyn = ADASYN(random_state=42)
+X_train_adasyn, y_train_adasyn = adasyn.fit_resample(X_train, y_train)
+# Initialize and train the Random Forest Classifier with class weights
+model = RandomForestClassifier(n_estimators=100, random_state=42)
+model.fit(X_train_adasyn, y_train_adasyn)
+# Predict on test set
+y_pred = model.predict(X_test)
+   ```
+</pre>
+
+<img src="https://github.com/iqbal-T19/image/blob/main/RandomForest.PNG?raw=true" alt="rf" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_SMOTE.PNG?raw=true"  alt="smote" style="width: 400px; height: 300px; object-fit: cover;"/><img src="https://github.com/iqbal-T19/image/blob/main/RandomForest_ADASYN.PNG?raw=true"  alt="ADASYN" style="width: 400px; height: 300px; object-fit: cover;"/>
+
+
 
 
 
